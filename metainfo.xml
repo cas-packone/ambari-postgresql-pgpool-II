@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<metainfo>
+  <schemaVersion>2.0</schemaVersion>
+  <services>
+    <service> 
+      <name>POSTGRESQL</name>
+      <displayName>PostgreSQL</displayName>
+      <comment>
+        PostgreSQL是以加州大学伯克利分校计算机系开发的 POSTGRES，现在已经更名为PostgreSQL，
+        PostgreSQL支持大部分 SQL标准并且提供了许多其他现代特性：
+        复杂查询、外键、触发器、视图、事务完整性、MVCC。
+        同样，PostgreSQL 可以用许多方法扩展，
+        比如， 通过增加新的数据类型、函数、操作符、聚集函数、索引。免费使用、修改、和分发 PostgreSQL，
+        不管是私用、商用、还是学术研究使用。
+      </comment>
+      <version>9.5.1</version>
+      <requiredService>
+        <service>PGPOOL-II</service>
+      </requiredService>
+      <components>
+        <component>
+          <name>PostgreSQL-M</name>
+          <displayName>PSql Master</displayName>
+          <category>MASTER</category>
+		  <cardinality>1+</cardinality>
+          <commandScript>
+            <script>scripts/PostgreSQL.py</script>
+            <scriptType>PYTHON</scriptType>
+            <timeout>600</timeout>
+          </commandScript>
+        </component>
+
+        <component>
+          <name>PostgreSQL-S</name>
+          <displayName>Psql slave</displayName>
+          <category>SLAVE</category>
+          <cardinality>0+</cardinality>
+          <commandScript>
+            <script>scripts/PostgreSqlSlave.py</script>
+            <scriptType>PYTHON</scriptType>
+            <timeout>600</timeout>
+          </commandScript>
+        </component>
+
+        <component>
+          <name>pgpool-II</name>
+          <displayName>pool master</displayName>
+          <category>MASTER</category>
+          <cardinality>1+</cardinality>
+          <commandScript>
+            <script>scripts/pgpool.py</script>
+            <scriptType>PYTHON</scriptType>
+            <timeout>600</timeout>
+          </commandScript>
+        </component>
+      </components>
+      <!-- what yum packages will be needed for the setup. These will be installed by install_packages() in master.py -->
+      <osSpecifics>
+        <osSpecific>
+          <osFamily>redhat5,redhat6,redhat7</osFamily>
+          <packages>
+            <package>
+              <name>glibc</name>
+            </package>
+          </packages>
+        </osSpecific>
+      </osSpecifics>
+    </service>
+  </services>
+</metainfo>
