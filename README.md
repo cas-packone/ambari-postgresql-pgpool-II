@@ -23,7 +23,7 @@
 ![Image](../master/screenshots/8-3.png?raw=true)
 
 # 安装slave
-  在安装master的时候后,pgpool的配置文件中配置了从机(slave)分别是packOne40/packOne41/packOne42.现在我们就对在着三台主机上安装上psql slave.这里以40为例:
+  在安装master的时候后,pgpool的配置文件中配置了从机(slave)分别是packOne40/packOne41/packOne42.现在我们就在三台主机上安装上psql slave.这里以40为例:
 ![Image](../master/screenshots/9-1.png?raw=true)
 ![Image](../master/screenshots/9-2.png?raw=true)
 ![Image](../master/screenshots/9-3.png?raw=true)
